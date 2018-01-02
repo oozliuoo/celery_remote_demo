@@ -2,8 +2,8 @@
 from celery import Celery
 
 app = Celery('tasks', backend='amqp',
-broker='amqp:///root:Chuangyizhi2013,@139.162.118.6/test')
+broker='amqp:///root:Chuangyizhi2013,@139.162.118.6')
 
 @app.task(bind=True, track_started=True)
-def add(x, y):
+def add(self, x, y):
 	return x + y
