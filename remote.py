@@ -1,9 +1,15 @@
 
 from celery import Celery
 
-# app = Celery('tasks', backend='amqp', broker='amqp://root:Chuangyizhi2013,@139.162.118.6/test')
+"""
+Comment out this line if you want to test with RabbitMQ
+"""
+# app = Celery('tasks', backend='amqp', broker='amqp://<user>:<password>@<ip>/<vhost>')
 
-app = Celery('tasks', backend='amqp',broker='redis://139.162.118.6:6379/0')
+"""
+Comment out this line if you want to test with redis
+"""
+# app = Celery('tasks', backend='amqp',broker='redis://<ip>:<port>/<redisdb>')
 
 @app.task(bind=True, track_started=True)
 def add(self, x, y):
